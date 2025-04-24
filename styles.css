@@ -379,10 +379,10 @@ header.scrolled .logo img {
 
 .lab-image {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 46%;
+  left: 52%;
   transform: translate(-50%, -50%);
-  width: 60%;
+  width: 50%;
   height: auto;
   border-radius: var(--border-radius-lg);
   object-fit: cover;
