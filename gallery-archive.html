@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery | AKUMELS - Association of Kenyatta University Medical Laboratory Students</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+<style>
+    /* Gallery Archive Specific Styles */
+    body {
+        background-color: #f8f9fa;
+    }
+    
+    .gallery-archive {
+        padding: 80px 0;
+    }
+    
+    .archive-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    
+    .archive-header h1 {
+        font-size: 36px;
+        color: #333;
+        margin-bottom: 15px;
+    }
+    
+    .archive-header p {
+        font-size: 18px;
+        color: #666;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    /* Filter Controls */
+    .filter-controls {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        margin-bottom: 30px;
+    }
+    
+    .filter-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .filter-row:last-child {
+        margin-bottom: 0;
+    }
+    
+    .filter-label {
+        font-weight: 600;
+        min-width: 100px;
+    }
+    
+    .filter-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        flex: 1;
+    }
+    
+    .filter-btn {
+        background: none;
+        border: 1px solid #e0e0e0;
+        padding: 8px 16px;
+        border-radius: 25px;
+        font-size: 14px;
+        color: #555;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .filter-btn:hover {
+        border-color: #0066cc;
+        color: #0066cc;
+    }
+    
+    .filter-btn.active {
+        background-color: #0066cc;
+        color: white;
+        border-color: #0066cc;
+    }
+    
+    .search-box {
+        position: relative;
+        flex: 1;
+    }
+    
+    .search-box input {
+        width: 100%;
+        padding: 10px 15px 10px 40px;
+        border: 1px solid #e0e0e0;
+        border-radius: 25px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+    
+    .search-box input:focus {
+        border-color: #0066cc;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    }
+    
+    .search-box i {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #999;
+    }
+    
+    .view-options {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .view-btn {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: none;
+    }
+    
+    .view-btn:hover {
+        border-color: #0066cc;
+        color: #0066cc;
+    }
+    
+    .view-btn.active {
+        background-color: #0066cc;
+        color: white;
+        border-color: #0066cc;
+    }
+    
+    /* Gallery Grid */
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+    
+    .gallery-grid.list-view {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-card {
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .gallery-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .gallery-image {
+        height: 220px;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .gallery-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .gallery-card:hover .gallery-image img {
+        transform: scale(1.05);
+    }
+    
+    .gallery-category {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background-color: rgba(0, 102, 204, 0.85);
+        color: white;
+        padding: 5px 12px;
+        font-size: 12px;
+        border-radius: 20px;
+        font-weight: 500;
+    }
+    
+    .gallery-details {
+        padding: 20px;
+    }
+    
+    .gallery-details h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: #333;
+    }
+    
+    .gallery-details p {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+    
+    .gallery-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        color: #888;
+    }
+    
+    .gallery-meta .date {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .gallery-meta .photos-count {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    /* List View Specifics */
+    .gallery-grid.list-view .gallery-card {
+        display: flex;
+        height: 200px;
+    }
+    
+    .gallery-grid.list-view .gallery-image {
+        width: 300px;
+        height: 100%;
+        flex-shrink: 0;
+    }
+    
+    .gallery-grid.list-view .gallery-details {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .gallery-grid.list-view .gallery-details p {
+        flex: 1;
+    }
+    
+    /* Pagination */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-top: 30px;
+    }
+    
+    .page-btn {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: none;
+        font-weight: 500;
+        color: #555;
+    }
+    
+    .page-btn:hover {
+        border-color: #0066cc;
+        color: #0066cc;
+    }
+    
+    .page-btn.active {
+        background-color: #0066cc;
+        color: white;
+        border-color: #0066cc;
+    }
+    
+    .page-btn.prev,
+    .page-btn.next {
+        width: auto;
+        padding: 0 15px;
+    }
+    
+    /* Modal */
+    .gallery-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .modal-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+    
+    .modal-close:hover {
+        background-color: #0066cc;
+    }
+    
+    .modal-content {
+        position: relative;
+        max-width: 90%;
+        max-height: 80%;
+    }
+    
+    .modal-content img {
+        max-width: 100%;
+        max-height: 80vh;
+        display: block;
+        object-fit: contain;
+    }
+    
+    .modal-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        color: white;
+        padding: 20px;
+    }
+    
+    .modal-controls {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+    
+    .modal-nav {
+        width: 50px;
+        height: 50px;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .modal-nav:hover {
+        background-color: #0066cc;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+        .gallery-grid.list-view .gallery-card {
+            flex-direction: column;
+            height: auto;
+        }
+        
+        .gallery-grid.list-view .gallery-image {
+            width: 100%;
+            height: 220px;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .filter-row {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .search-box {
+            width: 100%;
+        }
+        
+        .gallery-archive {
+            padding: 60px 0;
+        }
+        
+        .archive-header h1 {
+            font-size: 28px;
+        }
+        
+        .archive-header p {
+            font-size: 16px;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .gallery-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .filter-options {
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .filter-options::-webkit-scrollbar {
+            display: none;
+        }
+    }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="akumelshero.png" alt="AKUMELS Logo" id="logo-img">
+            </div>
+            <nav>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#gallery" class="active">Gallery</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Gallery Archive Section -->
+    <section class="gallery-archive">
+        <div class="container">
+            <div class="archive-header">
+                <h1>AKUMELS Photo Gallery</h1>
+                <p>Explore our collection of moments, events, and activities that showcase the journey and impact of the Association of Kenyatta University Medical Laboratory Science Students.</p>
+            </div>
+            
+            <!-- Filter Controls -->
+            <div class="filter-controls">
+                <div class="filter-row">
+                    <div class="filter-label">Categories:</div>
+                    <div class="filter-options">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="community-outreach">Community Outreach</button>
+                        <button class="filter-btn" data-filter="medical-camps">Medical Camps</button>
+                        <button class="filter-btn" data-filter="blood-drives">Blood Drives</button>
+                        <button class="filter-btn" data-filter="networking">Networking Events</button>
+                        <button class="filter-btn" data-filter="research">Research Webinars</button>
+                        <button class="filter-btn" data-filter="collaborations">Collaborations</button>
+                        <button class="filter-btn" data-filter="sports">Games & Sports</button>
+                    </div>
+                </div>
+                
+                <div class="filter-row">
+                    <div class="filter-label">Time Period:</div>
+                    <div class="filter-options">
+                        <button class="filter-btn active" data-time="all">All Time</button>
+                        <button class="filter-btn" data-time="2025">2025</button>
+                        <button class="filter-btn" data-time="2024">2024</button>
+                        <button class="filter-btn" data-time="2023">2023</button>
+                        <button class="filter-btn" data-time="older">Older</button>
+                    </div>
+                </div>
+                
+                <div class="filter-row">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search by title, location, or description...">
+                    </div>
+                    
+                    <div class="view-options">
+                        <button class="view-btn active" data-view="grid"><i class="fas fa-th"></i></button>
+                        <button class="view-btn" data-view="list"><i class="fas fa-list"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gallery Grid -->
+            <div class="gallery-grid">
+                <!-- Community Outreach 1 -->
+                <div class="gallery-card" data-category="community-outreach" data-year="2025">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/600x400" alt="Community Health Education">
+                        <div class="gallery-category">Community Outreach</div>
+                    </div>
+                    <div class="gallery-details">
+                        <h3>Community Health Education</h3>
+                        <p>AKUMELS members teaching basic health diagnostics in rural communities of Kiambu County.</p>
+                        <div class="gallery-meta">
+                            <div class="date">
+                                <i class="far fa-calendar"></i>
+                                <span>March 2025</span>
+                            </div>
+                            <div class="photos-count">
+                                <i class="far fa-images"></i>
+                                <span>12 Photos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Community Outreach 2 -->
+                <div class="gallery-card" data-category="community-outreach" data-year="2025">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/600x400" alt="Public Awareness Campaign">
+                        <div class="gallery-category">Community Outreach</div>
+                    </div>
+                    <div class="gallery-details">
+                        <h3>Public Awareness Campaign</h3>
+                        <p>Raising awareness about proper diagnostic testing in urban areas of Nairobi.</p>
+                        <div class="gallery-meta">
+                            <div class="date">
+                                <i class="far fa-calendar"></i>
+                                <span>February 2025</span>
+                            </div>
+                            <div class="photos-count">
+                                <i class="far fa-images"></i>
+                                <span>8 Photos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Medical Camp 1 -->
+                <div class="gallery-card" data-category="medical-camps" data-year="2025">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/600x400" alt="Rural Diagnostic Camp">
+                        <div class="gallery-category">Medical Camp</div>
+                    </div>
+                    <div class="gallery-details">
+                        <h3>Rural Diagnostic Camp</h3>
+                        <p>Providing essential laboratory services to underserved populations in Machakos County.</p>
+                        <div class="gallery-meta">
+                            <div class="date">
+                                <i class="far fa-calendar"></i>
+                                <span>April 2025</span>
+                            </div>
+                            <div class="photos-count">
+                                <i class="far fa-images"></i>
+                                <span>15 Photos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Medical Camp 2 -->
+                <div class="gallery-card" data-category="medical-camps" data-year="2024">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/600x400" alt="Urban Health Screening">
+                        <div class="gallery-category">Medical Camp</div>
+                    </div>
+                    <div class="gallery-details">
+                        <h3>Urban Health Screening</h3>
+                        <p>Free diagnostic testing for common conditions in urban communities of Nairobi.</p>
+                        <div class="gallery-meta">
+                            <div class="date">
+                                <i class="far fa-calendar"></i>
+                                <span>November 2024</span>
+                            </div>
+                            <div class="photos-count">
+                                <i class="far fa-images"></i>
+                                <span>10 Photos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blood Drive -->
+                <div class="gallery-card" data-category="blood-drives" data-year="2025">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/600x400" alt="University Blood Donation Drive">
+                        <div class="gallery-category">Blood Drive</div>
+                    </div>
+                    <div class="gallery-details">
+                        <h3>University Blood Donation Drive</h3>
+                        <p>AKUMELS members organizing blood collection at Kenyatta University Campus.</p>
+                        <div class="gallery-meta">
+                            <div class="date">
+                                <i class="far fa-calendar"></i>
+                                <span>March 2025</span>
+                            </div>
+                            <div class="photos-count">
+                                <i class="far fa-images"></i>
+                                <span>9 Photos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Networking Event -->
+                <div class="gallery-card" data-category="networking" data-year="2025">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/600x400" alt="Industry Professional Meetup">
+                        <div class="gallery-category">Networking</div>
+                    </div>
+                    <div class="gallery-details">
+                        <h3>Industry Professional Meetup</h3>
+                        <p>Students connecting with established laboratory professionals from major hospitals in Kenya.</p>
+                        <div class="gallery-meta">
+                            <div class="date">
+                                <i class="far fa-calendar"></i>
+                                <span>February 2025</span>
+                            </div>
+                            <div class="photos-count">
+                                <i class="far fa-images"></i>
+                                <span>14 Photos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Research Webinar -->
+                <div class="gallery-card" data-category="research" data-year="2025">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/600x400" alt="Diagnostic Innovation Forum">
+                        <div class="gallery-category">Research</div>
+                    </div>
+                    <div class="gallery-details">
+                        <h3>Diagnostic Innovation Forum</h3>
+                        <p>Virtual presentation of emerging laboratory techniques by leading researchers.</p>
+                        <div class="gallery-meta">
+                            <div class="date">
+                                <i class="far fa-calendar"></i>
+                                <span>April 2025</span>
+                            </div>
+                            <div class="photos-count">
+                                <i class="far fa-images"></i>
+                                <span>7 Photos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Collaboration -->
+                <div class="gallery-card" data-category="collaborations" data-year="2025">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/600x400" alt="Inter-University Research Project">
+                        <div class="gallery-category">Collaboration</div>
+                    </div>
+                    <div class="gallery-details">
+                        <h3>Inter-University Research Project</h3>
+                        <p>Collaborative study with medical students from University of Nairobi on infectious disease diagnosis.</p>
+                        <div class="gallery-meta">
+                            <div class="date">
+                                <i class="far fa-calendar"></i>
+                                <span>March 2025</span>
+                            </div>
+                            <div class="photos-count">
+                                <i class="far fa-images"></i>
+                                <span>11 Photos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sports Event -->
+                <div class="gallery-card" data-category="sports" data-year="2025">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/600x400" alt="Annual AKUMELS Sports Day">
+                        <div class="gallery-category">Sports</div>
+                    </div>
+                    <div class="gallery-details">
+                        <h3>Annual AKUMELS Sports Day</h3>
+                        <p>Team building and physical activities for members at Kenyatta University Sports Ground.</p>
+                        <div class="gallery-meta">
+                            <div class="date">
+                                <i class="far fa-calendar"></i>
+                                <span>February 2025</span>
+                            </div>
+                            <div class="photos-count">
+                                <i class="far fa-images"></i>
+                                <span>20 Photos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Community Outreach 3 (2024) -->
+                <div class="gallery-card" data-category="community-outreach" data-year="2024">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/600x400" alt="School Outreach Program">
+                        <div class="gallery-category">Community Outreach</div>
+                    </div>
+                    <div class="gallery-details">
+                        <h3>School Outreach Program</h3>
+                        <p>Educating high school students about career opportunities in medical laboratory sciences.</p>
+                        <div class="gallery-meta">
+                            <div class="date">
+                                <i class="far fa-calendar"></i>
+                                <span>October 2024</span>
+                            </div>
+                            <div class="photos-count">
+                                <i class="far fa-images"></i>
+                                <span>13 Photos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blood Drive (2024) -->
+                <div class="gallery-card" data-category="blood-drives" data-year="2024">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/600x400" alt="Community Blood Drive">
+                        <div class="gallery-category">Blood Drive</div>
+                    </div>
+                    <div class="gallery-details">
+                        <h3>Community Blood Drive</h3>
+                        <p>Partnership with Kenya National Blood Transfusion Service for emergency blood reserves.</p>
+                        <div class="gallery-meta">
+                            <div class="date">
+                                <i class="far fa-calendar"></i>
+                                <span>September 2024</span>
+                            </div>
+                            <div class="photos-count">
+                                <i class="far fa-images"></i>
+                                <span>16 Photos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Research Conference (2024) -->
+                <div class="gallery-card" data-category="research" data-year="2024">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/600x400" alt="Student Research Conference">
+                        <div class="gallery-category">Research</div>
+                    </div>
+                    <div class="gallery-details">
+                        <h3>Student Research Conference</h3>
+                        <p>AKUMELS members presenting their research findings at the annual medical sciences symposium.</p>
+                        <div class="gallery-meta">
+                            <div class="date">
+                                <i class="far fa-calendar"></i>
+                                <span>August 2024</span>
+                            </div>
+                            <div class="photos-count">
+                                <i class="far fa-images"></i>
+                                <span>18 Photos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="page-btn prev"><i class="fas fa-chevron-left"></i> Previous</button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <span>...</span>
+                <button class="page-btn">8</button>
+                <button class="page-btn next">Next <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery Modal -->
+    <div class="gallery-modal">
+        <span class="modal-close"><i class="fas fa-times"></i></span>
+        <div class="modal-content">
+            <img src="" alt="Gallery Image" id="modal-image">
+            <div class="modal-info">
+                <h3 id="modal-title"></h3>
+                <p id="modal-description"></p>
+                <span id="modal-date"></span>
+            </div>
+        </div>
+        <div class="modal-controls">
+            <div class="modal-nav prev-image"><i class="fas fa-chevron-left"></i></div>
+            <div class="modal-nav next-image"><i class="fas fa-chevron-right"></i></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="akumelshero.png" alt="AKUMELS Logo">
+                    <p>Association of Kenyatta University Medical Laboratory Science Students</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#gallery">Gallery</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/aku_mels_" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 AKUMELS - Association of Kenyatta University Medical Laboratory Science Students. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+<a href="#" class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
+<script>
+    // Filter functionality
+    const filterButtons = document.querySelectorAll('.filter-btn[data-filter]');
+    const timeButtons = document.querySelectorAll('.filter-btn[data-time]');
+    const viewButtons = document.querySelectorAll('.view-btn');
+    const galleryGrid = document.querySelector('.gallery-grid');
+    const searchInput = document.querySelector('.search-box input');
+    const galleryCards = document.querySelectorAll('.gallery-card');
+    
+    // Filter by category
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Update active state
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            const filter = button.getAttribute('data-filter');
+            filterGallery();
+        });
+    });
+    
+    // Filter by time period
+    timeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Update active state
+            timeButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            filterGallery();
+        });
+    });
+    
+    // Search functionality
+    searchInput.addEventListener('input', filterGallery);
+    
+    // Main filter function
+    function filterGallery() {
+        const activeCategory = document.querySelector('.filter-btn[data-filter].active').getAttribute('data-filter');
+        const activeTime = document.querySelector('.filter-btn[data-time].active').getAttribute('data-time');
+        const searchTerm = searchInput.value.toLowerCase();
+        
+        galleryCards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            const year = card.getAttribute('data-year');
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            const description = card.querySelector('p').textContent.toLowerCase();
+            
+            // Check if card matches all active filters
+            const matchesCategory = activeCategory === 'all' || category === activeCategory;
+            const matchesTime = activeTime === 'all' || 
+                               (activeTime === 'older' && parseInt(year) < 2023) || 
+                               year === activeTime;
+            const matchesSearch = searchTerm === '' || 
+                                 title.includes(searchTerm) || 
+                                 description.includes(searchTerm);
+            
+            // Show/hide based on filter results
+            if (matchesCategory && matchesTime && matchesSearch) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+    
+    // Toggle view (grid/list)
+    viewButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            viewButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            const view = button.getAttribute('data-view');
+            if (view === 'grid') {
+                galleryGrid.classList.remove('list-view');
+            } else {
+                galleryGrid.classList.add('list-view');
+            }
+        });
+    });
+    
+    // Gallery Modal functionality
+    const galleryModal = document.querySelector('.gallery-modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDescription = document.getElementById('modal-description');
+    const modalDate = document.getElementById('modal-date');
+    const modalClose = document.querySelector('.modal-close');
+    const prevImageBtn = document.querySelector('.modal-nav.prev-image');
+    const nextImageBtn = document.querySelector('.modal-nav.next-image');
+    let currentIndex = 0;
+    
+    // Open modal when clicking on gallery card
+    galleryCards.forEach((card, index) => {
+        card.addEventListener('click', () => {
+            currentIndex = index;
+            updateModal(card);
+            galleryModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        });
+    });
+    
+    // Close modal
+    modalClose.addEventListener('click', () => {
+        galleryModal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Re-enable scrolling
+    });
+    
+    // Navigate to previous image
+    prevImageBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + galleryCards.length) % galleryCards.length;
+        updateModal(galleryCards[currentIndex]);
+    });
+    
+    // Navigate to next image
+    nextImageBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % galleryCards.length;
+        updateModal(galleryCards[currentIndex]);
+    });
+    
+    // Update modal content
+    function updateModal(card) {
+        const image = card.querySelector('.gallery-image img').src;
+        const title = card.querySelector('h3').textContent;
+        const description = card.querySelector('p').textContent;
+        const date = card.querySelector('.date span').textContent;
+        
+        modalImage.src = image;
+        modalTitle.textContent = title;
+        modalDescription.textContent = description;
+        modalDate.textContent = date;
+    }
+    
+    // Close modal when clicking outside
+    galleryModal.addEventListener('click', (e) => {
+        if (e.target === galleryModal) {
+            galleryModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+    
+    // Back to top button functionality
+    const backToTopButton = document.querySelector('.back-to-top');
+    
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('show');
+        } else {
+            backToTopButton.classList.remove('show');
+        }
+    });
+    
+    backToTopButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+</script>
+</body>
+</html>

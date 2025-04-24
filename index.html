@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKUMELS - Association of Kenyatta University Medical Laboratory Students</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="akumelslogo.png" alt="AKUMELS Logo" id="logo-img">
+            </div>
+            <nav>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Association of Kenyatta University Medical Laboratory Science Students</h1>
+                <div class="typing-text">
+                    <span id="typed-text"></span>
+                    <span class="cursor">|</span>
+                </div>
+                <p>Empowering future medical laboratory professionals through excellence, ethics, and innovation.</p>
+                <div class="hero-buttons">
+                    <a href="#about" class="btn btn-primary">Learn More</a>
+                    <a href="#contact" class="btn btn-outline">Contact Us</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="blob">
+                    <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M421.9,290.6c-23.4,89.1-128,133.8-217.2,110.4S71,273,94.5,183.9S222.5,50.1,311.7,73.5S445.4,201.5,421.9,290.6z" fill="#0066cc33"></path>
+                    </svg>
+                    <img src="stage.png" alt="Medical Lab Science" class="lab-image">
+                </div>
+                <!-- Floating Medical Icons -->
+                <div class="floating-icon" id="icon1"><i class="fas fa-microscope"></i></div>
+                <div class="floating-icon" id="icon2"><i class="fas fa-vial"></i></div>
+                <div class="floating-icon" id="icon3"><i class="fas fa-heartbeat"></i></div>
+                <div class="floating-icon" id="icon4"><i class="fas fa-dna"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Us</h2>
+                <div class="underline"></div>
+            </div>
+            
+            <div class="about-slider">
+                <div class="slider-controls">
+                    <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <div class="slider-indicators">
+                        <span class="indicator active" data-index="0"></span>
+                        <span class="indicator" data-index="1"></span>
+                        <span class="indicator" data-index="2"></span>
+                        <span class="indicator" data-index="3"></span>
+                        <span class="indicator" data-index="4"></span>
+                    </div>
+                    <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                
+                <div class="slider-container">
+                    <!-- Who Are We Card -->
+                    <div class="slider-card active">
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Who Are We?</h3>
+                        <p>AKUMELS is a unique group of Medical Laboratory Students at Kenyatta University, united by our shared passion for advancing the field of medical diagnostics. We are driven by the collective need to deliver proper and accurate patient diagnosis practices, ensuring that the foundation of healthcare is built on precision and reliability.</p>
+                    </div>
+                    
+                    <!-- Our Mission Card -->
+                    <div class="slider-card">
+                        <div class="card-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Our Mission</h3>
+                        <p>To deliver accurate patient diagnostics while boosting academic standards at Kenyatta University. By applying theory to practice, promoting ethics, and offering exposure through research and community service, we shape future leaders in medical laboratory science.</p>
+                    </div>
+                    
+                    <!-- Our Vision Card -->
+                    <div class="slider-card">
+                        <div class="card-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Our Vision</h3>
+                        <p>To lead the advancement of medical laboratory science by empowering our members to make meaningful contributions to healthcare. We aim to cultivate ethical, well-rounded professionals who drive innovation, research, and community service to improve public health.</p>
+                    </div>
+                    
+                    <!-- Why Join Us Card -->
+                    <div class="slider-card">
+                        <div class="card-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Why Join Us</h3>
+                        <ul class="benefits-list">
+                            <li><i class="fas fa-check-circle"></i> Enhance Your Knowledge and Skills</li>
+                            <li><i class="fas fa-check-circle"></i> Expand Your Network</li>
+                            <li><i class="fas fa-check-circle"></i> Grow Professionally</li>
+                            <li><i class="fas fa-check-circle"></i> Boost Your Career</li>
+                            <li><i class="fas fa-check-circle"></i> Make a Difference</li>
+                            <li><i class="fas fa-check-circle"></i> Lead and Inspire</li>
+                            <li><i class="fas fa-check-circle"></i> Collaborate on Research</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Our Activities Card -->
+                    <div class="slider-card">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3>Our Activities</h3>
+                        <ul class="activities-list">
+                            <li><i class="fas fa-hands-helping"></i> Community Outreach</li>
+                            <li><i class="fas fa-campground"></i> Medical Camps</li>
+                            <li><i class="fas fa-tint"></i> Blood Drives</li>
+                            <li><i class="fas fa-network-wired"></i> Networking Events</li>
+                            <li><i class="fas fa-laptop"></i> Research Webinars</li>
+                            <li><i class="fas fa-handshake"></i> Collaborations and Partnerships</li>
+                            <li><i class="fas fa-futbol"></i> Games and Sports</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Gallery</h2>
+                <div class="underline"></div>
+            </div>
+            
+            <div class="gallery-container">
+                <!-- Gallery Navigation -->
+                <div class="gallery-categories">
+                    <button class="category-btn active" data-category="all">All</button>
+                    <button class="category-btn" data-category="community-outreach">Community Outreach</button>
+                    <button class="category-btn" data-category="medical-camps">Medical Camps</button>
+                    <button class="category-btn" data-category="blood-drives">Blood Drives</button>
+                    <button class="category-btn" data-category="networking">Networking Events</button>
+                    <button class="category-btn" data-category="research">Research Webinars</button>
+                    <button class="category-btn" data-category="collaborations">Collaborations</button>
+                    <button class="category-btn" data-category="sports">Games & Sports</button>
+                </div>
+                
+                <!-- Main Gallery Display -->
+                <div class="gallery-display-container">
+                    <div class="gallery-carousel">
+                        <!-- Community Outreach Images -->
+                        <div class="gallery-item" data-category="community-outreach">
+                            <div class="gallery-image">
+                                <img src="https://via.placeholder.com/800x500" alt="Community Outreach">
+                                <div class="gallery-overlay">
+                                    <h3>Community Health Education</h3>
+                                    <p>AKUMELS members teaching basic health diagnostics in rural communities</p>
+                                    <span class="gallery-date">March 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" data-category="community-outreach">
+                            <div class="gallery-image">
+                                <img src="https://via.placeholder.com/800x500" alt="Community Outreach">
+                                <div class="gallery-overlay">
+                                    <h3>Public Awareness Campaign</h3>
+                                    <p>Raising awareness about proper diagnostic testing in urban areas</p>
+                                    <span class="gallery-date">February 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Medical Camps Images -->
+                        <div class="gallery-item" data-category="medical-camps">
+                            <div class="gallery-image">
+                                <img src="https://via.placeholder.com/800x500" alt="Medical Camp">
+                                <div class="gallery-overlay">
+                                    <h3>Rural Diagnostic Camp</h3>
+                                    <p>Providing essential laboratory services to underserved populations</p>
+                                    <span class="gallery-date">April 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" data-category="medical-camps">
+                            <div class="gallery-image">
+                                <img src="https://via.placeholder.com/800x500" alt="Medical Camp">
+                                <div class="gallery-overlay">
+                                    <h3>Urban Health Screening</h3>
+                                    <p>Free diagnostic testing for common conditions in urban communities</p>
+                                    <span class="gallery-date">January 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Blood Drives Images -->
+                        <div class="gallery-item" data-category="blood-drives">
+                            <div class="gallery-image">
+                                <img src="https://via.placeholder.com/800x500" alt="Blood Drive">
+                                <div class="gallery-overlay">
+                                    <h3>University Blood Donation Drive</h3>
+                                    <p>AKUMELS members organizing blood collection at Kenyatta University</p>
+                                    <span class="gallery-date">March 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Networking Events Images -->
+                        <div class="gallery-item" data-category="networking">
+                            <div class="gallery-image">
+                                <img src="https://via.placeholder.com/800x500" alt="Networking Event">
+                                <div class="gallery-overlay">
+                                    <h3>Industry Professional Meetup</h3>
+                                    <p>Students connecting with established laboratory professionals</p>
+                                    <span class="gallery-date">February 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Research Webinars Images -->
+                        <div class="gallery-item" data-category="research">
+                            <div class="gallery-image">
+                                <img src="https://via.placeholder.com/800x500" alt="Research Webinar">
+                                <div class="gallery-overlay">
+                                    <h3>Diagnostic Innovation Forum</h3>
+                                    <p>Virtual presentation of emerging laboratory techniques</p>
+                                    <span class="gallery-date">April 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Collaborations Images -->
+                        <div class="gallery-item" data-category="collaborations">
+                            <div class="gallery-image">
+                                <img src="https://via.placeholder.com/800x500" alt="Collaboration">
+                                <div class="gallery-overlay">
+                                    <h3>Inter-University Research Project</h3>
+                                    <p>Collaborative study with medical students from Nairobi University</p>
+                                    <span class="gallery-date">March 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Games & Sports Images -->
+                        <div class="gallery-item" data-category="sports">
+                            <div class="gallery-image">
+                                <img src="https://via.placeholder.com/800x500" alt="Sports Event">
+                                <div class="gallery-overlay">
+                                    <h3>Annual AKUMELS Sports Day</h3>
+                                    <p>Team building and physical activities for members</p>
+                                    <span class="gallery-date">February 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Navigation Controls -->
+                    <div class="gallery-controls">
+                        <button class="gallery-prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="gallery-indicators"></div>
+                        <button class="gallery-next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Fullscreen View Button -->
+                    <button class="gallery-fullscreen">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- <div class="gallery-more">
+                <a href="gallery-archive.html" class="btn btn-outline">View All Photos</a>
+            </div>
+        </div> -->
+        
+        <!-- Fullscreen Modal -->
+        <div class="gallery-modal">
+            <span class="modal-close"><i class="fas fa-times"></i></span>
+            <div class="modal-content">
+                <img src="" alt="Fullscreen Image" id="modal-image">
+                <div class="modal-info">
+                    <h3 id="modal-title"></h3>
+                    <p id="modal-description"></p>
+                    <span id="modal-date"></span>
+                </div>
+            </div>
+            <button class="modal-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="modal-next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <div class="underline"></div>
+            </div>
+            
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Connect With Us</h3>
+                    <p>Have questions or interested in joining? Reach out to us through any of these channels:</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="far fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <a href="mailto:akumelssecretariat@gmail.com">akumelssecretariat@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Instagram</h4>
+                                <a href="https://instagram.com/aku_mels_" target="_blank">@aku_mels_</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>LinkedIn</h4>
+                                <a href="#" target="_blank">Association of Kenyatta University Medical Laboratory Students</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <div class="glass-form">
+                        <h3>Send us a Message</h3>
+                        <form id="akumels-contact-form">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary submit-btn">
+                                <span class="btn-text">Send Message</span>
+                                <span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="akumelshero.png" alt="AKUMELS Logo">
+                    <p>Association of Kenyatta University Medical Laboratory Science Students</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/aku_mels_" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 AKUMELS - Association of Kenyatta University Medical Laboratory Science Students. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
