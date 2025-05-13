@@ -1,7 +1,7 @@
 
 # AKUMELS – Association of Kenyatta University Medical Laboratory Science Students
 
-Welcome to the official web presence of **AKUMELS**, the Association of Kenyatta University Medical Laboratory Science Students. This website showcases the mission, vision, community impact, and dynamic activities of the future leaders in medical diagnostics at Kenyatta University.
+Welcome to the official web presence of **AKUMELS akumels.netlify.app**, the Association of Kenyatta University Medical Laboratory Science Students. This website showcases the mission, vision, community impact, and dynamic activities of the future leaders in medical diagnostics at Kenyatta University.
 
 ---
 
